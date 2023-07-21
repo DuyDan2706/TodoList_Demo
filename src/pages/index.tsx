@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { z } from 'zod'
+import { makeStyles } from '@mui/styles'
 
 import { CreateTodoForm } from '@/client/components/CreateTodoForm'
 import { TodoList } from '@/client/components/TodoList'
@@ -21,7 +22,19 @@ import { TodoList } from '@/client/components/TodoList'
  *  - https://www.radix-ui.com/docs/primitives/components/tabs
  */
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const useStyles = makeStyles({
+  tabsContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  tab: {
+    marginLeft: '10px', // Adjust the value as needed
+  },
+})
 const Index = () => {
+  const classes = useStyles()
   const TabName = z.enum(['all', 'pending', 'completed'])
   type TabName = z.infer<typeof TabName>
 
@@ -49,63 +62,45 @@ const Index = () => {
             onChange={handleChange}
             aria-label="basic tabs example"
             TabIndicatorProps={{ style: { display: 'none' } }}
-            className="flex gap-4"
+            className={classes.tabsContainer}
           >
             <Tab
               label="All"
-              className={`
-                flex ${
-                  activeTab === tabIndexes.all
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-700'
-                }
-                darkGreen:bg-gray-700 darkGreen:text-white
-                MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected
-                css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer 
-              `}
+              className={`${classes.tab} ${
+                activeTab === tabIndexes.all
+                  ? 'bg-gray-700 text-white '
+                  : 'text-gray-700'
+              } darkGreen:bg-gray-700 darkGreen:text-white`}
               style={{
                 borderRadius: '9999px',
                 border: '1px solid var(--gray-700, #E2E8F0)',
                 color:
                   activeTab === tabIndexes.all ? 'white' : 'var(--darkGreen)',
-                padding: '0 16px',
               }}
             />
             <Tab
               label="Pending"
-              className={`
-              flex  ${
+              className={`${classes.tab} ${
                 activeTab === tabIndexes.pending
-                  ? 'bg-gray-700 text-white'
+                  ? 'bg-gray-700 text-white '
                   : 'text-gray-700'
-              }
-              darkGreen:bg-gray-700 darkGreen:text-white
-              MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected
-              css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer 
-            `}
+              } darkGreen:bg-gray-700 darkGreen:text-white`}
               style={{
                 borderRadius: '9999px',
                 border: '1px solid var(--gray-700, #E2E8F0)',
-                margin: '2px',
                 color:
                   activeTab === tabIndexes.pending
                     ? 'white'
                     : 'var(--darkGreen)',
-                padding: '0 16px',
               }}
             />
             <Tab
               label="Completed"
-              className={`
-              flex  ${
+              className={`${classes.tab} ${
                 activeTab === tabIndexes.completed
-                  ? 'bg-gray-700 text-white'
+                  ? 'bg-gray-700 text-white '
                   : 'text-gray-700'
-              }
-              darkGreen:bg-gray-700 darkGreen:text-white
-              MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected
-              css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer 
-            `}
+              } darkGreen:bg-gray-700 darkGreen:text-white`}
               style={{
                 borderRadius: '9999px',
                 border: '1px solid var(--gray-700, #E2E8F0)',
@@ -113,7 +108,6 @@ const Index = () => {
                   activeTab === tabIndexes.completed
                     ? 'white'
                     : 'var(--darkGreen)',
-                padding: '0 16px',
               }}
             />
           </Tabs>
