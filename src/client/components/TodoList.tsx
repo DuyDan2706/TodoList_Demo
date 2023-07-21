@@ -71,20 +71,20 @@ export const TodoList = ({
   const { data: todos = [], refetch } = api.todo.getAll.useQuery({
     statuses: status === 'all' ? ['completed', 'pending'] : [status],
   })
+  const test = useRef(null)
   const { mutateAsync: updateTodoStatus } = api.todoStatus.update.useMutation()
   const { mutateAsync: deleteTodo } = api.todo.delete.useMutation()
-  const parent = useRef(null)
 
   useEffect(() => {
-    parent.current && autoAnimate(parent.current)
-  }, [parent])
+    test.current && autoAnimate(test.current)
+  }, [test])
 
   useEffect(() => {
     refetch()
   }, [status, refetch])
 
   return (
-    <ul className="grid grid-cols-1 gap-y-3" ref={parent}>
+    <ul className="grid grid-cols-1 gap-y-3" ref={test}>
       {todos.map((todo) => (
         <li key={todo.id}>
           <div
@@ -94,7 +94,7 @@ export const TodoList = ({
           >
             <Checkbox.Root
               id={String(todo.id)}
-              className="flex h-6 w-6 items-center justify-center rounded-6 border border-gray-300 focus:border-gray-700 focus:outline-none data-[state=checked]:border-gray-700 data-[state=checked]:bg-gray-700"
+              className="flex h-5 w-5 items-center justify-center rounded-6 border border-gray-300 focus:border-gray-700 focus:outline-none data-[state=checked]:border-gray-700 data-[state=checked]:bg-gray-700"
               onCheckedChange={(checked) => {
                 updateTodoStatus({
                   todoId: todo.id,
@@ -104,12 +104,12 @@ export const TodoList = ({
               defaultChecked={todo.status === 'completed'}
             >
               <Checkbox.Indicator>
-                <CheckIcon className="h-4 w-4 text-white" />
+                <CheckIcon className="h- w-5 text-white" />
               </Checkbox.Indicator>
             </Checkbox.Root>
 
             <label
-              className={`block pl-3 font-medium ${
+              className={`block pl-4 font-normal ${
                 todo.status === 'completed' ? 'text-gray-700 line-through' : ''
               }`}
               htmlFor={String(todo.id)}
@@ -125,7 +125,7 @@ export const TodoList = ({
               }}
               className="ml-auto"
             >
-              <XMarkIcon className="h-6 w-6" />
+              <XMarkIcon className="h-5 w-5" />
             </button>
           </div>
         </li>

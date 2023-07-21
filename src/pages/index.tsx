@@ -36,15 +36,14 @@ const Index = () => {
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue)
   }
-
   return (
-    <main className="mx-auto  w-[480px] space-x-4   pt-12">
+    <main className="mx-auto  w-[480px]    pt-12">
       <div className="rounded-12  bg-white  p-8 shadow-sm ">
         <h1 className="text-center text-4xl font-extrabold text-gray-900">
           Todo App
         </h1>
 
-        <div className=" pt-10 ">
+        <div className=" pt-10">
           <Tabs
             value={activeTab}
             onChange={handleChange}
@@ -62,26 +61,27 @@ const Index = () => {
                 }
                 darkGreen:bg-gray-700 darkGreen:text-white
                 MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected
-                css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer gap-4
+                css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer 
               `}
               style={{
                 borderRadius: '9999px',
                 border: '1px solid var(--gray-700, #E2E8F0)',
                 color:
                   activeTab === tabIndexes.all ? 'white' : 'var(--darkGreen)',
+                padding: '0 16px',
               }}
             />
             <Tab
               label="Pending"
               className={`
-              flex ${
+              flex  ${
                 activeTab === tabIndexes.pending
                   ? 'bg-gray-700 text-white'
                   : 'text-gray-700'
               }
               darkGreen:bg-gray-700 darkGreen:text-white
               MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected
-              css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer gap-4
+              css-1h9z7r5-MuiButtonBase-root-MuiTab-root MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer 
             `}
               style={{
                 borderRadius: '9999px',
@@ -91,12 +91,13 @@ const Index = () => {
                   activeTab === tabIndexes.pending
                     ? 'white'
                     : 'var(--darkGreen)',
+                padding: '0 16px',
               }}
             />
             <Tab
               label="Completed"
               className={`
-              flex ${
+              flex  ${
                 activeTab === tabIndexes.completed
                   ? 'bg-gray-700 text-white'
                   : 'text-gray-700'
@@ -112,6 +113,7 @@ const Index = () => {
                   activeTab === tabIndexes.completed
                     ? 'white'
                     : 'var(--darkGreen)',
+                padding: '0 16px',
               }}
             />
           </Tabs>
